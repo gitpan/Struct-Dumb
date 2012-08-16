@@ -1,0 +1,55 @@
+NAME
+    `Struct::Dumb' - make simple lightweight record-like structures
+
+SYNOPSIS
+     use Struct::Dumb;
+ 
+     struct Point => [qw( x y )];
+
+     my $point = Point(10, 20);
+
+     printf "Point is at (%d, %d)\n", $point->x, $point->y;
+
+     $point->y = 30;
+     printf "Point is now at (%d, %d)\n", $point->x, $point->y;
+
+DESCRIPTION
+    `Struct::Dumb' creates record-like structure types, similar to the
+    `struct' keyword in C, C++ or C#, or `Record' in Pascal. An invocation
+    of this module will create a construction function which returns new
+    object references with the given field values. These references all
+    respond to lvalue methods that access or modify the values stored.
+
+    It's specifically and intentionally not meant to be an object class. You
+    cannot subclass it. You cannot provide additional methods. You cannot
+    apply roles or mixins or metaclasses or traits or antlers or whatever
+    else is in fashion this week.
+
+    On the other hand, it is tiny, creates cheap lightweight array-backed
+    structures, uses nothing outside of core. It's intended simply to be a
+    slightly nicer way to store data structures, where otherwise you might
+    be tempted to abuse a hash, complete with the risk of typoing key names.
+    The constructor will `croak' if passed the wrong number of arguments, as
+    will attempts to refer to fields that don't exist.
+
+     $ perl -E 'use Struct::Dumb; struct Point => [qw( x y )]; Point(30)'
+     usage: main::Point($x, $y) at -e line 1
+
+     $ perl -E 'use Struct::Dumb; struct Point => [qw( x y )]; Point(10,20)->z'
+     main::Point does not have a 'z' field at -e line 1
+
+FUNCTIONS
+  struct $name => [ @fieldnames ]
+    Creates a new structure type. This exports a new function of the type's
+    name into the caller's namespace. Invoking this function returns a new
+    instance of a type that implements those field names, as accessors and
+    mutators for the fields.
+
+  readonly_struct $name => [ @fieldnames ]
+    Similar to `struct', but instances of this type are immutable once
+    constructed. The field accessor methods will not be marked with the
+    `:lvalue' attribute.
+
+AUTHOR
+    Paul Evans <leonerd@leonerd.org.uk>
+
