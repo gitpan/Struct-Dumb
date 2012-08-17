@@ -1,4 +1,8 @@
 Revision history for Struct-Dumb
 
+0.02    BUGFIXES:
+         * Fix unit tests to cope with new Carp message format, with the "."
+           appended
+
 0.01    First version, released on an unsuspecting world.
 

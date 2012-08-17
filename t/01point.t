@@ -21,9 +21,9 @@ $point->y = 30;
 is( $point->y, 30, '$point->y is 30 after mutation' );
 
 like( exception { $point->z },
-      qr/^main::Point does not have a 'z' field at \S+ line \d+\n/,
+      qr/^main::Point does not have a 'z' field at \S+ line \d+\.?\n/,
       '$point->z throws exception' );
 
 like( exception { Point(30) },
-      qr/^usage: main::Point\(\$x, \$y\) at \S+ line \d+\n/,
+      qr/^usage: main::Point\(\$x, \$y\) at \S+ line \d+\.?\n/,
       'Point(30) throws usage exception' );
