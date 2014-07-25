@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 2;
+use Test::More;
 
 package Foo;
 use Struct::Dumb;
@@ -20,3 +20,5 @@ my $point3 = Bar::Point(10, 20, 30);
 
 ok( !$point2->can( "z" ), '$point2 cannot ->z' );
 can_ok( $point3, "z" );
+
+done_testing;

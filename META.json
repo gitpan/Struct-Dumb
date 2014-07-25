@@ -4,7 +4,7 @@
       "Paul Evans <leonerd@leonerd.org.uk>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4001, CPAN::Meta::Converter version 2.120630",
+   "generated_by" : "Module::Build version 0.4205",
    "license" : [
       "perl_5"
    ],
@@ -17,14 +17,14 @@
       "build" : {
          "requires" : {
             "Test::Fatal" : "0",
-            "Test::More" : "0"
+            "Test::More" : "0.88"
          }
       }
    },
    "provides" : {
       "Struct::Dumb" : {
          "file" : "lib/Struct/Dumb.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       }
    },
    "release_status" : "stable",
@@ -33,5 +33,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }

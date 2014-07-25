@@ -1,5 +1,9 @@
 Revision history for Struct-Dumb
 
+0.03    2014/07/25 10:01:02
+        [CHANGES]
+         * Support named constructors (RT97452)
+
 0.02    BUGFIXES:
          * Fix unit tests to cope with new Carp message format, with the "."
            appended

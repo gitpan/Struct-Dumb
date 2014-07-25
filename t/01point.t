@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 6;
+use Test::More;
 use Test::Fatal;
 
 use Struct::Dumb;
@@ -27,3 +27,5 @@ like( exception { $point->z },
 like( exception { Point(30) },
       qr/^usage: main::Point\(\$x, \$y\) at \S+ line \d+\.?\n/,
       'Point(30) throws usage exception' );
+
+done_testing;

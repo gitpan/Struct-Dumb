@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 2;
+use Test::More;
 use Test::Fatal;
 
 use Struct::Dumb qw( readonly_struct );
@@ -16,3 +16,5 @@ is( $point->x, 10, '$point->x is 10' );
 
 ok( exception { $point->y = 30 },
     '$point->y throws exception on readonly_struct' );
+
+done_testing;

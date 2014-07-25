@@ -13,6 +13,22 @@ SYNOPSIS
      $point->y = 30;
      printf "Point is now at (%d, %d)\n", $point->x, $point->y;
 
+
+
+     struct Point3D => [qw( x y z )], named_constructor => 1;
+
+     my $point3d = Point3D( z => 12, x => 100, y => 50 );
+
+     printf "Point3d's height is %d\n", $point3d->z;
+
+
+
+     use Struct::Dumb qw( -named_constructors )
+
+     struct Point3D => [qw( x y z ];
+
+     my $point3d = Point3D( x => 100, z => 12, y => 50 );
+
 DESCRIPTION
     `Struct::Dumb' creates record-like structure types, similar to the
     `struct' keyword in C, C++ or C#, or `Record' in Pascal. An invocation
@@ -38,17 +54,38 @@ DESCRIPTION
      $ perl -E 'use Struct::Dumb; struct Point => [qw( x y )]; Point(10,20)->z'
      main::Point does not have a 'z' field at -e line 1
 
+  CONSTRUCTOR FORMS
+    The `struct' and `readonly_struct' declarations create two different
+    kinds of constructor function, depending on the setting of the
+    `named_constructor' option. When false, the constructor takes positional
+    values in the same order as the fields were declared. When true, the
+    constructor takes a key/value pair list in no particular order, giving
+    the value of each named field.
+
+    This option can be specified to the `struct' and `readonly_struct'
+    functions. It defaults to false, but it can be set on a per-package
+    basis to default true by supplying the `-named_constructors' option on
+    the `use' statement.
+
 FUNCTIONS
-  struct $name => [ @fieldnames ]
+  struct $name => [ @fieldnames ], %opts
     Creates a new structure type. This exports a new function of the type's
     name into the caller's namespace. Invoking this function returns a new
     instance of a type that implements those field names, as accessors and
     mutators for the fields.
 
-  readonly_struct $name => [ @fieldnames ]
+    Takes the following options:
+
+    named_constructor => BOOL
+        Determines whether the structure will take positional or named
+        arguments.
+
+  readonly_struct $name => [ @fieldnames ], %opts
     Similar to `struct', but instances of this type are immutable once
     constructed. The field accessor methods will not be marked with the
     `:lvalue' attribute.
+
+    Takes the same options as `struct'.
 
 AUTHOR
     Paul Evans <leonerd@leonerd.org.uk>
